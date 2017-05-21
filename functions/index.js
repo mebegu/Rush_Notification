@@ -14,6 +14,7 @@ exports.sendNotification = functions.https.onRequest((req, res) => {
   const receiver = req.body.receiver;
   const sub = req.body.sub;
   const text = req.body.text;
+  const act = req.body.act;
 
   // Get the list of device notification tokens.
   const getDeviceTokensPromise = admin.database().ref(`devices`).child(receiver).once('value').then(result => {
@@ -29,7 +30,8 @@ exports.sendNotification = functions.https.onRequest((req, res) => {
     const payload = {
       notification: {
         title: sub,
-        body: text
+        body: text,
+        activity: act
       }
     };
 
