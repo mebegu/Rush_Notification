@@ -31,7 +31,7 @@ exports.sendNotification = functions.https.onRequest((req, res) => {
       notification: {
         title: sub,
         body: text,
-        activity: act
+        click_action: act
       }
     };
 
